@@ -159,7 +159,7 @@ const totalTTC = (produits) => {
         return totalTTCproduit
     })
     .reduce((acc, curr) => acc + curr, 0)
-    return totals.totalTTC = parseFloat(resultTotalTTC.toFixed(2))
+    return totals.totalTTC = parseFloat(resultTotalTTC, 10).toFixed(2)
 }
 
 const totalHT = (produits) => {
@@ -173,7 +173,7 @@ const totalHT = (produits) => {
         return result
     })
     .reduce((acc, curr) => acc + curr, 0)
-    return totals.totalHT = parseFloat(resultTotalHT.toFixed(2))
+    return totals.totalHT = parseFloat(resultTotalHT, 10).toFixed(2)
 }
 
 const totalTVA = (produits) => {
@@ -186,7 +186,7 @@ const totalTVA = (produits) => {
         return taxeTotal
     })
     .reduce((acc, curr) => acc + curr, 0)
-    return totals.TVA = parseFloat(resultTVA.toFixed(2))
+    return totals.TVA = parseFloat(resultTVA, 10).toFixed(2)
 }
 
 const requireImg = (url) => {
@@ -252,7 +252,7 @@ const PdfMake = ({ infos, produits, url, footer }) => (
                                     <Text>{produits[key].montant} €</Text>
                                 </View>
                                 <View style={styles.produitsKey}>
-                                    <Text>{parseFloat(produits[key].quantity * produits[key].montant)} €</Text>
+                                    <Text>{parseFloat(produits[key].quantity * produits[key].montant, 10).toFixed(2)} €</Text>
                                 </View>
                             </View>
                         ))}

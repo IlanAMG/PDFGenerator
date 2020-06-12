@@ -253,7 +253,7 @@ const PdfFacture = ({ infos, produits, url, footer }) => (
                                     <Text>{produits[key].montant} €</Text>
                                 </View>
                                 <View style={styles.produitsKey}>
-                                    <Text>{parseFloat(produits[key].quantity * produits[key].montant)} €</Text>
+                                    <Text>{parseFloat(produits[key].quantity * produits[key].montant, 10).toFixed(2)} €</Text>
                                 </View>
                             </View>
                         ))}
