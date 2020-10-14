@@ -75,21 +75,21 @@ export const FactureForm = () => {
     const handleAddImg = () => {
         const uploadTask = firebase.storage.ref(`images/${cheminImg.name}`).put(cheminImg)
         uploadTask.on('state_changed',
-             (snapshot) => {
-                //progress
-                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-                setProgress(progress)
-             }, 
-             (err) => {
-                //error
-                console.log(err)
-             }, 
-             () => {
-                //complete
-                firebase.storage.ref('images').child(cheminImg.name).getDownloadURL().then(url => {
-                    setURL(url)
+                (snapshot) => {
+                    //progress
+                    const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                    setProgress(progress)
+                }, 
+                (err) => {
+                    //error
+                    console.log(err)
+                }, 
+                () => {
+                    //complete
+                    firebase.storage.ref('images').child(cheminImg.name).getDownloadURL().then(url => {
+                        setURL(url)
+                    })
                 })
-             })
     }
 
     const handleFooter = e => {

@@ -168,8 +168,7 @@ const totalHT = (produits) => {
         const montant = parseFloat(produits[key].montant, 10)
         const quantity = parseInt(produits[key].quantity, 10)
         const taxe = parseFloat(produits[key].taxe, 10)
-        const taxeTotal = (montant*quantity*taxe)
-        const result = ((montant * quantity) - taxeTotal) //le total HT est calculé ici
+        const result = ((montant * quantity)/ (1 + taxe)) //le total HT est calculé ici
         return result
     })
     .reduce((acc, curr) => acc + curr, 0)
@@ -182,8 +181,9 @@ const totalTVA = (produits) => {
         const montant = parseFloat(produits[key].montant, 10)
         const quantity = parseInt(produits[key].quantity, 10)
         const taxe = parseFloat(produits[key].taxe, 10)
-        const taxeTotal = (montant*quantity*taxe)
-        return taxeTotal
+        const totalHT = ((montant * quantity)/ (1 + taxe)) 
+        const totalTVA = montant * quantity - totalHT
+        return totalTVA
     })
     .reduce((acc, curr) => acc + curr, 0)
     return totals.TVA = parseFloat(resultTVA, 10).toFixed(2)
